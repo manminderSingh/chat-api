@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :user, path: '', path_names: {
+  resources :messages
+  resources :channels
+  get 'authentication/auth'
+  devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
-    registraton: 'signup'
-  }, controllers: {
+    registration: 'signup'
+  },
+  controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
