@@ -1,6 +1,4 @@
 class ChannelSerializer
   include JSONAPI::Serializer
-    attributes :id, :name
-    has_many :messages
-  attributes 
+    attributes :name
 end
