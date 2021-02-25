@@ -12,13 +12,10 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    byebug
-    channel = Channel.new(channel_params.except(:id))
+    channel = Channel.create(channel_params.except(:id))
     if channel.save
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ChannelSerializer.new(conversation)
-      ).serializable_hash
-      byebug
+        ChannelSerializer.new(channel)).serializable_hash
       ActionCable.server.broadcast 'conversations_channel', serialized_data
       head :ok
     end
