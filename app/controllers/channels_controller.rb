@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-  before_action :set_channel, only: [:show, :update]
+  before_action :set_channel, only: [:show]
 
   def index
     channels = Channel.all
@@ -21,6 +21,16 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def set_channel
+    @channel = Channel.find(params[:id])
+  end
+
+  def channel_params
+    strong_params = [:id, :name]
+    params.permit(strong_params)
+  end
+
+  protected
   def update
     channel = Channel.find(channel_params[:id]) if channel_params[:id]
     if channel.update(channel_params.except(:id))
@@ -35,15 +45,6 @@ class ChannelsController < ApplicationController
     if channel
       channel.destroy
     end
-  end
-
-  def set_channel
-    @channel = Channel.find(params[:id])
-  end
-
-  def channel_params
-    strong_params = [:id, :name]
-    params.permit(strong_params)
   end
 
 end
