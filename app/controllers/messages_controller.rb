@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-  # before_action :load_entities
 
   def index
     messages = Message.all
@@ -14,8 +13,7 @@ class MessagesController < ApplicationController
       if message.save
         serialized_data = ActiveModelSerializers::Adapter::Json.new(
           MessageSerializer.new(message)).serializable_hash
-        # MessagesChannel.broadcast_to channel, serialized_data
-        ActionCable.server.broadcast 'messages_channel', serialized_data
+          ActionCable.server.broadcast 'messages_channel', serialized_data
         head :ok
       end
     end
@@ -31,11 +29,5 @@ class MessagesController < ApplicationController
   def message_params
     params.permit([:id, :message, :user_id, :channel_id])
   end
-
-  protected
-  def load_entities
-    @channel = Channel.find(params[:channel_id])
-  end
-  
   
 end

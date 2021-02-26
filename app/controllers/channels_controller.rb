@@ -36,7 +36,7 @@ class ChannelsController < ApplicationController
     params.permit(strong_params)
   end
 
-  # protected
+  protected
   def update
     channel = Channel.find(channel_params[:id]) if channel_params[:id]
     if channel.update(channel_params.except(:id))
