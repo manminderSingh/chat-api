@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
       if message.save
         serialized_data = ActiveModelSerializers::Adapter::Json.new(
           MessageSerializer.new(message)).serializable_hash
-          ActionCable.server.broadcast 'messages_channel', serialized_data
+        ActionCable.server.broadcast 'messages_channel', serialized_data
         head :ok
       end
     end
