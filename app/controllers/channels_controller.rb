@@ -12,13 +12,19 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    channel = Channel.create(channel_params.except(:id))
-    if channel.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ChannelSerializer.new(channel)).serializable_hash
-      ActionCable.server.broadcast 'conversations_channel', serialized_data
-      head :ok
+    is_unique = check_channel_is_unique
+    if (is_unique)
+      channel = Channel.create(channel_params.except(:id))
+      if channel.save
+        serialized_data = ActiveModelSerializers::Adapter::Json.new(
+          ChannelSerializer.new(channel)).serializable_hash
+        ActionCable.server.broadcast 'conversations_channel', serialized_data
+        head :ok
+      end
+    else 
+      render json: {message: 'Channel name already exist', status: 403}, adapter: :attributes, status: 403
     end
+
   end
 
   def set_channel
@@ -30,7 +36,7 @@ class ChannelsController < ApplicationController
     params.permit(strong_params)
   end
 
-  protected
+  # protected
   def update
     channel = Channel.find(channel_params[:id]) if channel_params[:id]
     if channel.update(channel_params.except(:id))
@@ -38,6 +44,13 @@ class ChannelsController < ApplicationController
     else
       render json: { message: 'Invalid parameters'}, status: 422
     end
+  end
+
+  def check_channel_is_unique
+    if Channel.where(name: params[:name]).any?
+      return false
+    end
+    return true
   end
 
   def destroy

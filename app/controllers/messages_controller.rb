@@ -10,18 +10,26 @@ class MessagesController < ApplicationController
     user = User.find(params[:user_id])
     channel = Channel.find(params[:channel_id])
     if user && channel
-      message = Message.create({user: user, channel: channel, message: params[:message]})
+      message = Message.new({user: user, channel: channel, message: params[:message]})
       if message.save
-        serialized_data = ActiveModelSerializers::Adapter::Json.new
-        (MessageSerializer.new(message)).serializable_hash
-        MessagesChannel.broadcast_to channel, serialized_data
+        serialized_data = ActiveModelSerializers::Adapter::Json.new(
+          MessageSerializer.new(message)).serializable_hash
+        # MessagesChannel.broadcast_to channel, serialized_data
+        ActionCable.server.broadcast 'messages_channel', serialized_data
         head :ok
       end
     end
   end
 
+  def destroy
+    message = Message.find(params[:id])
+    if message
+      message.destroy
+    end
+  end
+
   def message_params
-    params.permit([:message, :user_id, :channel_id])
+    params.permit([:id, :message, :user_id, :channel_id])
   end
 
   protected
