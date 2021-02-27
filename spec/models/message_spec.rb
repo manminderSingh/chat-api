@@ -39,6 +39,4 @@ RSpec.describe Message, type: :model do
     expect(msg.message).to_not eq('')
     expect(msg.message).to eq('Hi there!')
   end
-
-
 end

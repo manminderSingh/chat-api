@@ -10,5 +10,4 @@ RSpec.describe Channel, type: :model do
     expect(channel.name).to eq('Development')
     expect(message.channel_id).to eq(channel.id)
   end
-
 end

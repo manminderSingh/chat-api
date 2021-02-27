@@ -15,6 +15,4 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
     expect(user.username).to eq(current_user.username)
   end
-
-  
 end
