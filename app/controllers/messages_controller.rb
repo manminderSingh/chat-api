@@ -19,15 +19,16 @@ class MessagesController < ApplicationController
     end
   end
 
+  def message_params
+    params.permit([:id, :message, :user_id, :channel_id])
+  end
+
+  protected
   def destroy
     message = Message.find(params[:id])
     if message
       message.destroy
     end
-  end
-
-  def message_params
-    params.permit([:id, :message, :user_id, :channel_id])
   end
   
 end
