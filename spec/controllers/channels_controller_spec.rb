@@ -3,11 +3,21 @@ require 'rails_helper'
 describe ChannelsController, type: :controller do
   describe 'GET #index' do
     it 'gets a list of channels' do
+      number_of_channels = Channel.all.length
 
       get :index
 
       expect(response).to be_successful
-      expect(JSON.parse(response.body).count).to eq(4)
+      expect(JSON.parse(response.body).count).to eq(number_of_channels)
+    end
+
+    it 'gets the first record of channel' do
+      channel = Channel.all.first
+
+      get :index
+
+      expect(response).to be_successful
+      expect(JSON.parse(response.body).first['name']).to eq(channel[:name])  
     end
   end
 
@@ -26,7 +36,6 @@ describe ChannelsController, type: :controller do
     end
 
     it 'get a message from specific channel' do
-
       channels = Channel.all
       channel = channels.first
       users = User.all
@@ -46,7 +55,6 @@ describe ChannelsController, type: :controller do
 
   describe 'POST #create' do
     it 'creates a duplicate channel' do
-
       post :create, params: { name: 'Sales' }
 
       expect(response).to_not be_successful
