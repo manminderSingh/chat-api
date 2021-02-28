@@ -15,13 +15,13 @@
       $ git clone git@github.com:manminderSingh/chat-api.git
       ```
 
-2. Once donwloaded, run bundle install
+2. Once downloaded, run bundle install
 
       ```
       $ bundle install
       ```
 
-  3. Run the migrate command to create database for the development and test respectively
+  3. Run the migrate command to create the database for development and test respectively.
   
       a. Development db migration
 
@@ -51,13 +51,13 @@
 
 ## Running Test Cases
 
-1. If you have already migrated the test database in the installation phase, please skip this step. To migrate the test database, run the following command.
+1. If you have already migrated the test database in the installation phase, please skip this step. If not then to migrate the test database, run the following command.
 
       ```
       $ rails db:migrate RAILS_ENV=test
       ```
 
-2. After runnning the above command either at the start or just before this step, please run the following command to run the tese suite.
+2. After runnning the above command either at the start or just before this step, please run the following command to run the test suite.
 
       ```
       $ rails spec  OR  $ rspec
