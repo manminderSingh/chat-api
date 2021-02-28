@@ -15,12 +15,13 @@
       $ git clone git@github.com:manminderSingh/chat-api.git
       ```
 
-2. Once donwloaded, run bundle install
+2. Once downloaded, run bundle install
 
       ```
       $ bundle install
       ```
 
+<<<<<<< HEAD
 3. Make sure if you have credentials.yml.enc file, please delete that to create a new one using the following command. Also, running this command would generate a master.key which would be gitignored
 
       ```
@@ -29,6 +30,9 @@
 
 
 4. Run the migrate command to create database for the development and test respectively
+=======
+  3. Run the migrate command to create the database for development and test respectively.
+>>>>>>> be0da202185b641152e180fd12491ed06df099bc
   
       a. Development db migration
 
@@ -52,19 +56,19 @@
 
 * Before you move on, please install Redis from https://redis.io/topics/quickstart for the application to run correctly. Command to run the Redis server after successful installation using the above link.
 
-      ```
+    ```
       $ redis-server
-      ```
+     ```
 
 ## Running Test Cases
 
-1. If you have already migrated the test database in the installation phase, please skip this step. To migrate the test database, run the following command.
+1. If you have already migrated the test database in the installation phase, please skip this step. If not then to migrate the test database, run the following command.
 
       ```
       $ rails db:migrate RAILS_ENV=test
       ```
 
-2. After runnning the above command either at the start or just before this step, please run the following command to run the tese suite.
+2. After runnning the above command either at the start or just before this step, please run the following command to run the test suite.
 
       ```
       $ rails spec  OR  $ rspec
