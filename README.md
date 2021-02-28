@@ -45,9 +45,9 @@
 
 * Before you move on, please install Redis from https://redis.io/topics/quickstart for the application to run correctly. Command to run the Redis server after successful installation using the above link.
 
-      ```
+    ```
       $ redis-server
-      ```
+     ```
 
 ## Running Test Cases
 
