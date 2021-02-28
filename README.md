@@ -1,24 +1,64 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Rails ChatApp Api
 
-Things you may want to cover:
+* Ruby version - 2.6.0
 
-* Ruby version
+* Rails version - 6.1.3
 
-* System dependencies
+## Instructions to run this app
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+  1. Clone the repository using the following command:
 
-* How to run the test suite
+      ```
+      $ git clone git@github.com:manminderSingh/chat-api.git
+      ```
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Once donwloaded, run bundle install
 
-* Deployment instructions
+      ```
+      $ bundle install
+      ```
 
-* ...
+  3. Run the migrate command to create database for the development and test respectively
+  
+      a. Development db migration
+
+      ```
+      $ rails db:migrate RAILS_ENV=development
+      ```
+
+      b. Test db migration (For Test Cases)
+
+      ```
+      $ rails db:migrate RAILS_ENV=test
+      ```
+
+4. Run the rails app using the following command.
+
+      ```
+      $ rails s
+      ```
+
+## Almost there
+
+* Before you move on, please install Redis from https://redis.io/topics/quickstart for the application to run correctly. Command to run the Redis server after successful installation using the above link.
+
+      ```
+      $ redis-server
+      ```
+
+## Running Test Cases
+
+1. If you have already migrated the test database in the installation phase, please skip this step. To migrate the test database, run the following command.
+
+      ```
+      $ rails db:migrate RAILS_ENV=test
+      ```
+
+2. After runnning the above command either at the start or just before this step, please run the following command to run the tese suite.
+
+      ```
+      $ rails spec  OR  $ rspec
+      ```
