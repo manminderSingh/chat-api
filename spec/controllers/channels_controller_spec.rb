@@ -55,6 +55,9 @@ describe ChannelsController, type: :controller do
 
   describe 'POST #create' do
     it 'creates a duplicate channel' do
+      # This would make sure we have duplicated the value before hand
+      channel = Channel.first_or_create!(name: 'Sales')
+
       post :create, params: { name: 'Sales' }
 
       expect(response).to_not be_successful
