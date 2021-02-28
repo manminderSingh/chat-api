@@ -9,7 +9,7 @@
 
 
 
-  1. Clone the repository using the following command:
+1. Clone the repository using the following command:
 
       ```
       $ git clone git@github.com:manminderSingh/chat-api.git
@@ -21,7 +21,13 @@
       $ bundle install
       ```
 
-  3. Run the migrate command to create the database for development and test respectively.
+3. Make sure if you have credentials.yml.enc file, please delete that to create a new one using the following command. Also, running this command would generate a master.key which would be gitignored
+
+      ```
+      $ EDITOR="mate --wait" bin/rails credentials:edit
+      ```
+
+4. Run the migrate command to create database for the development and test respectively
   
       a. Development db migration
 
@@ -35,7 +41,7 @@
       $ rails db:migrate RAILS_ENV=test
       ```
 
-4. Run the rails app using the following command.
+5. Run the rails app using the following command.
 
       ```
       $ rails s
