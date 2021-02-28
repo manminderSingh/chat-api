@@ -6,8 +6,6 @@ RSpec.describe Channel, type: :model do
 
   it 'has the correct attributes' do
     message = Message.first_or_create!(channel: channel, message: 'Salut!', user: current_user)
-    expect(channel.id).to eq(1)
-    expect(channel.name).to eq('Development')
     expect(message.channel_id).to eq(channel.id)
   end
 end
