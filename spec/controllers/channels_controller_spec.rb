@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-describe ChannelsController, type: :controller do
+RSpec.describe ChannelsController, type: :controller do
+  channel = Channel.first_or_create!(name: 'Sales')
   describe 'GET #index' do
     it 'gets a list of channels' do
       number_of_channels = Channel.all.length
@@ -55,8 +56,6 @@ describe ChannelsController, type: :controller do
 
   describe 'POST #create' do
     it 'creates a duplicate channel' do
-      # This would make sure we have duplicated the value before hand
-      channel = Channel.first_or_create!(name: 'Sales')
 
       post :create, params: { name: 'Sales' }
 
